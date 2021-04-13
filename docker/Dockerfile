@@ -39,6 +39,15 @@ ENV PATH=/jdk1.8.0_281/bin:$PATH
 WORKDIR /aurum-datadiscovery/ddprofiler
 RUN bash build.sh
 
+
+# The sample dataset:
+
+WORKDIR /
+ADD adventureWork.zip /adventureWork.zip
+RUN apt-get update && apt-get install -y unzip
+RUN unzip adventureWork.zip
+RUN rm adventureWork.zip
+
 RUN chsh elastic --shell /bin/bash
 
 RUN echo export PATH=/elasticsearch-6.0.0/bin:$PATH >> /etc/profile.d/datastation.sh
