@@ -4,6 +4,6 @@ echo cmd.sh: starting
 
 sudo -u elastic -i elasticsearch &
 
-echo cmd.sh: sleeping 3 minutes
-sleep 3m
+jupyter notebook --allow-root --ip 0.0.0.0
+
 echo cmd.sh: done
