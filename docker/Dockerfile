@@ -38,3 +38,12 @@ ENV PATH=/jdk1.8.0_281/bin:$PATH
 
 WORKDIR /aurum-datadiscovery/ddprofiler
 RUN bash build.sh
+
+RUN chsh elastic --shell /bin/bash
+
+RUN echo export PATH=/elasticsearch-6.0.0/bin:$PATH >> /etc/profile.d/datastation.sh
+RUN echo export JAVA_HOME=/jdk1.8.0_281/ >> /etc/profile.d/datastation.sh
+RUN echo export PATH=/jdk1.8.0_281/bin:$PATH >> /etc/profile.d/datastation.sh
+
+ADD cmd.sh /cmd.sh
+CMD /cmd.sh
