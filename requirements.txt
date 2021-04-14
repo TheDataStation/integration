@@ -1,2 +1,2 @@
-../blindml/
-../aurum-datadiscovery/
+/blindml
+/aurum-datadiscovery

@@ -18,7 +18,7 @@ def test_big_small_classifier_quick():
     print(f"Prediction: {p}")
 
 def get_model_by_example(values):
-    path_model = "../aurum-datadiscovery/test/"
+    path_model = "/model/"
     separator = ","
     output_path = ".//testres/"
     api = DOD_API(path_model, output_path, separator)
