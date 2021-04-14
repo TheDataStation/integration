@@ -69,6 +69,16 @@ RUN mkdir /root/.jupyter
 # this config contains a hashed default password
 ADD jupyter_notebook_config.json /root/.jupyter/jupyter_notebook_config.json
 
+RUN mkdir /notebooks
+ADD notebooks/* /notebooks/
+
+# this is because blindml packaging can't deal with these files
+# that live in the source tree.
+ADD blindml/*.json /notebooks/
+
+# because dod does not make its own result directory. it probably should be made to...
+RUN mkdir /notebooks/testres
+
 ADD cmd.sh /cmd.sh
 CMD /cmd.sh
 
