@@ -75,21 +75,21 @@ RUN echo 'export PATH=/jdk1.8.0_281/bin:$PATH' >> /etc/profile.d/datastation.sh
 
 RUN pip3 install --upgrade pip
 
-ADD blindml /blindml
-ADD aurum-datadiscovery /aurum-datadiscovery
-ADD blindml-dod-integ /aurum-dod-integ
+RUN git clone https://github.com/TheDataStation/blindml /blindml --branch benc-dod-integration
+RUN git clone https://github.com/TheDataStation/aurum-dod-staging /aurum-datadiscovery --branch benc-blindml-integration
 
-RUN find /blindml /aurum-datadiscovery /aurum-dod-integ -depth -name __pycache__ -exec rm -rfv {} \;
-RUN find /blindml /aurum-datadiscovery /aurum-dod-integ -depth -name \*.pyc -exec rm -rfv {} \;
-
-# RUN apt-get update && apt-get install -y swig
+ADD blindml-dod-integ /blindml-dod-integ
 
 WORKDIR /
-RUN pip3 install -e blindml/ aurum-datadiscovery/ 
+RUN pip3 install -r blindml-dod-integ/requirements.txt
+
+# (blindml doesn't have enough in it to validate itself when
+# installed from pip, not from source tree)
+# would be nice to have this validation though
 
 # validate these installs:
-WORKDIR /blindml
-RUN ./quick-test.sh
+# WORKDIR /blindml
+#RUN ./quick-test.sh
 
 
 # The java build:
@@ -131,10 +131,13 @@ ADD notebooks/* /notebooks/
 
 # this is because blindml packaging can't deal with these files
 # that live in the source tree.
-ADD blindml/*.json /notebooks/
+RUN cp /blindml/*.json /notebooks/
 
 # because dod does not make its own result directory. it probably should be made to...
 RUN mkdir /notebooks/testres
+
+# integration API, could be installed/packaged with pip, or done entirely differently
+RUN cp /blindml-dod-integ/test_dod_integ.py /notebooks/
 
 ADD cmd.sh /cmd.sh
 CMD /cmd.sh
