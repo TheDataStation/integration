@@ -28,9 +28,7 @@ def get_model_by_example(values):
 
     api.get_topk_views(attrs, values, 5)
 
-    print("BENC: parsing task capsule")
     task = parse_task_capsule("dod.jsonnet")
-    print("BENC: finished parsing task capsule")
     task.search_for_model()
 
     model = task._auto_sk_model

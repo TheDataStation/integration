@@ -75,8 +75,9 @@ RUN echo 'export PATH=/jdk1.8.0_281/bin:$PATH' >> /etc/profile.d/datastation.sh
 
 RUN pip3 install --upgrade pip
 
-RUN git clone https://github.com/TheDataStation/blindml /blindml --branch benc-dod-integration
-RUN git clone https://github.com/TheDataStation/aurum-dod-staging /aurum-datadiscovery --branch benc-blindml-integration
+RUN git clone https://github.com/TheDataStation/blindml /blindml --branch benc-dod-integration && cd /blindml && git checkout 9ab29e04b8750de993a6e57e5dd10b9a779bb60c
+
+RUN git clone https://github.com/TheDataStation/aurum-dod-staging /aurum-datadiscovery --branch benc-blindml-integration && cd /aurum-datadiscovery && git checkout 76b940a6cd18512844c5858c17ab65b92ad6c486
 
 ADD blindml-dod-integ /blindml-dod-integ
 
