@@ -140,6 +140,10 @@ RUN mkdir /notebooks/testres
 # integration API, could be installed/packaged with pip, or done entirely differently
 RUN cp /blindml-dod-integ/test_dod_integ.py /notebooks/
 
+# for view presentation:
+RUN mkdir /adhoc-python
+ADD view_presentation_dod /adhoc-python/view_presentation_dod
+
 ADD cmd.sh /cmd.sh
 CMD /cmd.sh
 
