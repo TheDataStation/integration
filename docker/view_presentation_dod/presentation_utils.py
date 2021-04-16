@@ -1,6 +1,6 @@
-from docker.view_presentation_dod import view_4c_analysis_baseline as v4c
-from docker.view_presentation_dod import material_view_analysis as mva
-from docker.view_presentation_dod.colors import Colors
+from view_presentation_dod import view_4c_analysis_baseline as v4c
+from view_presentation_dod import material_view_analysis as mva
+from view_presentation_dod.colors import Colors
 from tqdm import tqdm
 import random
 from enum import Enum
