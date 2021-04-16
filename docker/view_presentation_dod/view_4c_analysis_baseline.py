@@ -3,7 +3,7 @@ from os.path import isfile, join
 from collections import defaultdict
 import pandas as pd
 from pandas.util import hash_pandas_object
-from DoD import material_view_analysis as mva
+from docker.view_presentation_dod import material_view_analysis as mva
 
 from tqdm import tqdm
 
