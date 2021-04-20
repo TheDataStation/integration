@@ -113,8 +113,13 @@ RUN apt-get update && apt-get install -y unzip
 RUN unzip adventureWork.zip
 RUN rm adventureWork.zip
 
-# Import dataset into elasticsearch
+# and the other sample dataset
+RUN mkdir /datasets/
+WORKDIR /datasets/
+RUN git clone https://github.com/scpike/us-state-county-zip/
+# RUN cp /datasets/us-state-county-zip/*.csv /adventureWork/
 
+# Import dataset into elasticsearch
 ## needed for killall used by import-adventureWork
 RUN apt-get update && apt-get install -y psmisc
 ADD import-adventureWork.sh /import-adventureWork.sh 
