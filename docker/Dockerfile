@@ -143,7 +143,7 @@ RUN cp /blindml/*.json /notebooks/
 RUN mkdir /notebooks/testres
 
 # integration API, could be installed/packaged with pip, or done entirely differently
-RUN cp /blindml-dod-integ/test_dod_integ.py /notebooks/
+RUN cp /blindml-dod-integ/blindml_dod_integ.py /notebooks/
 
 # for view presentation:
 RUN mkdir /adhoc-python
