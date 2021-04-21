@@ -47,6 +47,13 @@ RUN apt-get update && apt-get install -y libpq-dev g++ virtualenv libreadline-de
 RUN apt-get update && apt-get install -y build-essential checkinstall
 RUN apt-get update && apt-get install -y libbz2-dev libc6-dev libgdbm-dev libncursesw5-dev libreadline-gplv2-dev libssl-dev libsqlite3-dev tk-dev
 
+# from https://stackoverflow.com/questions/57743230/userwarning-could-not-import-the-lzma-module-your-installed-python-is-incomple
+# requirement to install lzma to remove a big red warning appearing in jupyter notebooks
+# that is distressing but otherwise harmless - without this, python 3.6 will be built
+# without lzma support and some library imports (eg pandas) will report:
+# UserWarning: Could not import the lzma module. Your installed Python is incomplete. Attempting to use lzma compression will result in a RuntimeError.
+RUN apt-get update && apt-get install -y liblzma-dev
+
 RUN curl -O https://www.python.org/ftp/python/3.6.13/Python-3.6.13.tgz
 RUN tar xzf Python-3.6.13.tgz
 
