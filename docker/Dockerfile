@@ -84,7 +84,7 @@ RUN pip3 install --upgrade pip
 
 RUN git clone https://github.com/TheDataStation/blindml /blindml --branch benc-dod-integration && cd /blindml && git checkout 9ab29e04b8750de993a6e57e5dd10b9a779bb60c
 
-RUN git clone https://github.com/TheDataStation/aurum-dod-staging /aurum-datadiscovery --branch benc-blindml-integration && cd /aurum-datadiscovery && git checkout 7ea7769737697d4bade6892c055f46c03c6eb7b7
+RUN git clone https://github.com/TheDataStation/aurum-dod-staging /aurum-datadiscovery --branch benc-blindml-integration && cd /aurum-datadiscovery && git checkout 9b694378d9b5819aeda3c54e4666c77d06e8ac62
 
 ADD blindml-dod-integ /blindml-dod-integ
 
