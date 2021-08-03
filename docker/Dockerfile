@@ -1,8 +1,5 @@
-FROM debian:stretch
-# use stretch instead of buster because this stuff won't build against
-# python 3.7 (lots of old pinned packages in requirements.txt)
+FROM debian:bullseye
 
-# FROM debian:buster
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get update && apt-get install -y sudo curl less net-tools git vim
 
@@ -44,8 +41,8 @@ RUN apt-get update && apt-get install -y libpq-dev g++ virtualenv libreadline-de
 # python3.6 install because neither python 3.5 (from this debian) nor python 3.7 (from next debian) is suitable at the moment.
 # instructions from https://gist.github.com/mattseymour/08456b01c467859fba625ba5711fa08e
 
-RUN apt-get update && apt-get install -y build-essential checkinstall
-RUN apt-get update && apt-get install -y libbz2-dev libc6-dev libgdbm-dev libncursesw5-dev libreadline-gplv2-dev libssl-dev libsqlite3-dev tk-dev
+RUN apt-get update && apt-get install -y build-essential
+RUN apt-get update && apt-get install -y libbz2-dev libc6-dev libgdbm-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev
 
 # from https://stackoverflow.com/questions/57743230/userwarning-could-not-import-the-lzma-module-your-installed-python-is-incomple
 # requirement to install lzma to remove a big red warning appearing in jupyter notebooks
