@@ -38,27 +38,7 @@ RUN apt-get update && apt-get install -y pkg-config libpng-dev libfreetype6-dev 
 # my extra discovered pre-reqs
 RUN apt-get update && apt-get install -y libpq-dev g++ virtualenv libreadline-dev make
 
-# python3.6 install because neither python 3.5 (from this debian) nor python 3.7 (from next debian) is suitable at the moment.
-# instructions from https://gist.github.com/mattseymour/08456b01c467859fba625ba5711fa08e
-
-RUN apt-get update && apt-get install -y build-essential
-RUN apt-get update && apt-get install -y libbz2-dev libc6-dev libgdbm-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev
-
-# from https://stackoverflow.com/questions/57743230/userwarning-could-not-import-the-lzma-module-your-installed-python-is-incomple
-# requirement to install lzma to remove a big red warning appearing in jupyter notebooks
-# that is distressing but otherwise harmless - without this, python 3.6 will be built
-# without lzma support and some library imports (eg pandas) will report:
-# UserWarning: Could not import the lzma module. Your installed Python is incomplete. Attempting to use lzma compression will result in a RuntimeError.
-RUN apt-get update && apt-get install -y liblzma-dev
-
-RUN curl -O https://www.python.org/ftp/python/3.6.13/Python-3.6.13.tgz
-RUN tar xzf Python-3.6.13.tgz
-
-WORKDIR /Python-3.6.13
-
-RUN ./configure
-RUN make
-RUN make install
+RUN apt-get update && apt-get install -y python3
 
 ADD cue.shell /
 RUN chmod a+x /cue.shell
@@ -81,7 +61,7 @@ RUN pip3 install --upgrade pip
 
 RUN git clone https://github.com/TheDataStation/blindml /blindml --branch benc-dod-integration && cd /blindml && git checkout 9ab29e04b8750de993a6e57e5dd10b9a779bb60c
 
-RUN git clone https://github.com/TheDataStation/aurum-dod-staging /aurum-datadiscovery --branch benc-blindml-integration && cd /aurum-datadiscovery && git checkout 9b694378d9b5819aeda3c54e4666c77d06e8ac62
+RUN git clone https://github.com/TheDataStation/aurum-dod-staging /aurum-datadiscovery --branch benc-blindml-integration && cd /aurum-datadiscovery && git checkout 93ab4bbd70413439702f883c530cdef0da544396
 
 ADD blindml-dod-integ /blindml-dod-integ
 
