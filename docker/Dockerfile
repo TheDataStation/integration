@@ -3,15 +3,9 @@ FROM debian:bullseye
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get update && apt-get install -y sudo curl less net-tools git vim
 
-
-# Install specific JDK because openjdk 11 vs dod doesn't work
-# JDK needs to be manually downloaded through oracle's clickthrough
-# system - this dockerfile cannot fetch it automatically
+RUN apt-get install -y openjdk-11-jdk
 
 WORKDIR /
-
-ADD jdk-8u281-linux-x64.tar.gz /
-# docker will extract this as part of the ADD command
 
 # Install elasticsearch
 # quickstart says v6  or above.
@@ -52,8 +46,6 @@ ENV LC_ALL C.UTF-8
 RUN chsh elastic --shell /bin/bash
 
 RUN echo 'export PATH=/elasticsearch-6.0.0/bin:$PATH' >> /etc/profile.d/datastation.sh
-RUN echo 'export JAVA_HOME=/jdk1.8.0_281/' >> /etc/profile.d/datastation.sh
-RUN echo 'export PATH=/jdk1.8.0_281/bin:$PATH' >> /etc/profile.d/datastation.sh
 
 # The python build:
 
@@ -81,9 +73,6 @@ RUN pip3 install -r blindml-dod-integ/requirements.txt
 # elasticsearch installed by cue/benc/datastation-dod
 # but the path to it needs setting
 ENV PATH=/elasticsearch-6.0.0/bin:$PATH
-
-ENV JAVA_HOME=/jdk1.8.0_281/
-ENV PATH=/jdk1.8.0_281/bin:$PATH
 
 WORKDIR /aurum-datadiscovery/ddprofiler
 RUN bash build.sh
