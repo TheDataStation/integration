@@ -53,7 +53,7 @@ RUN pip3 install --upgrade pip
 
 RUN git clone https://github.com/TheDataStation/blindml /blindml --branch benc-dod-integration && cd /blindml && git checkout 9ab29e04b8750de993a6e57e5dd10b9a779bb60c
 
-RUN git clone https://github.com/TheDataStation/aurum-dod-staging /aurum-datadiscovery --branch benc-blindml-integration && cd /aurum-datadiscovery && git checkout c14e8d84a985e91e4a3fc83ea93eb8da30869a56
+RUN git clone https://github.com/TheDataStation/aurum-dod-staging /aurum-datadiscovery --branch benc-blindml-integration && cd /aurum-datadiscovery && git checkout 99012ce38449e39c9d08300470fb149b77d4ff9d
 
 ADD blindml-dod-integ /blindml-dod-integ
 
@@ -74,7 +74,12 @@ RUN pip3 install -r blindml-dod-integ/requirements.txt
 # but the path to it needs setting
 ENV PATH=/elasticsearch-6.0.0/bin:$PATH
 
-WORKDIR /aurum-datadiscovery/ddprofiler
+
+ADD blindml-dod-integ /blindml-dod-integ
+
+RUN git clone https://github.com/TheDataStation/ddprofiler /ddprofiler --branch benc-integration && cd /ddprofiler && git checkout 7fb71c3d985915b15b75f5c1d6acd07de42be7ec
+
+WORKDIR /ddprofiler
 RUN bash build.sh
 
 

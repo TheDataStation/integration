@@ -2,7 +2,7 @@
 
 sudo -u elastic -i elasticsearch &
 
-cd /aurum-datadiscovery/ddprofiler
+cd /ddprofiler
 
 bash ./run.sh --source=/adventureWork.yaml
 
