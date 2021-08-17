@@ -1,11 +1,7 @@
 How to build this
 =================
 
-1. separately download jdk-8u281-linux-x64.tar.gz
-   and place it in:
-   docker/jdk-8u281-linux-x64.tar.gz
-
-2. run:
+1. run:
 
    cd docker
 
@@ -13,7 +9,7 @@ How to build this
 
    The last line will tell you the image ID for the image just built.
  
-3. run a container with:
+2. run a container with:
 
    docker run --rm -p 8888:8888 $IMAGEID
 
