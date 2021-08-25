@@ -1,0 +1,7 @@
+name: 'Integrate user register and its backend'
+description: "install and basic test of user register with backend"
+runs:
+  using: composite
+  steps:
+    - run: echo This action does nothing
+    - shell: bash
