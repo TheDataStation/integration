@@ -3,5 +3,24 @@ description: "install and basic test of user register with backend"
 runs:
   using: composite
   steps:
-    - run: echo This action does nothing
+    - run: echo user register and backend database_service integration test
       shell: bash
+    - uses: actions/checkout@v2
+      with:
+        repository: TheDataStation/user_register
+        ref: master
+        path: user_register
+    - uses: actions/checkout@v2
+      with:
+        repository: TheDataStation/database_service
+        ref: master
+        path: database_service
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - name: install requirements.txt from both components together
+      run: |
+        pip install -r user_register/requirements.txt -r database_service/requirements.txt
+
+
