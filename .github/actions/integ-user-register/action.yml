@@ -4,4 +4,4 @@ runs:
   using: composite
   steps:
     - run: echo This action does nothing
-    - shell: bash
+      shell: bash
