@@ -1,5 +1,14 @@
 name: 'Integrate user register and its backend'
 description: "install and basic test of user register with backend"
+inputs:
+  database_service_commit:
+    description: "branch/commit of database_service to test"
+    required: false
+    default: 'main'
+  user_register_commit:
+    description: "branch/commit of user_register to test"
+    required: false
+    default: 'main'
 runs:
   using: composite
   steps:
@@ -8,12 +17,12 @@ runs:
     - uses: actions/checkout@v2
       with:
         repository: benclifford/user_register
-        ref: integration-testing
+        ref: ${{ inputs.user_register_commit }}
         path: user_register
     - uses: actions/checkout@v2
       with:
         repository: TheDataStation/database_service
-        ref: main
+        ref: ${{ inputs.database_service_commit }}
         path: database_service
     - name: Set up Python 3.8
       uses: actions/setup-python@v1
