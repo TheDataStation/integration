@@ -13,7 +13,7 @@ runs:
     - uses: actions/checkout@v2
       with:
         repository: TheDataStation/database_service
-        ref: master
+        ref: main
         path: database_service
     - name: Set up Python 3.8
       uses: actions/setup-python@v1
