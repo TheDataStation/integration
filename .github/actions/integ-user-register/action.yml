@@ -38,5 +38,8 @@ runs:
         # now wait for this to become responsive to connections for 30 seconds
         wget http://127.0.0.1:8000/ --retry-connrefused --tries 30 --waitretry=1
 
-        killall --wait uvicorn
-        killall --wait python3
+        # Fall off the end without killing the processes explicitly.
+        # uvicorn does not shut down in response to signals:
+        # https://stackoverflow.com/questions/60424390/is-there-a-way-to-kill-uvicorn-cleanly
+
+        echo done
