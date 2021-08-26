@@ -10,7 +10,6 @@ runs:
         repository: benclifford/user_register
         ref: integration-testing
         path: user_register
-        token: ${{ secrets.GitHub_PAT }}
     - uses: actions/checkout@v2
       with:
         repository: TheDataStation/database_service
