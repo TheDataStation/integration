@@ -25,5 +25,9 @@ runs:
         pip install -r user_register/requirements.txt -r database_service/requirements.txt
         cd database_service && python3 DatabaseServer.py &
         cd user_register && uvicorn main:app --reload &
-        echo not actually testing but sleeping to get the first 30s out output
-        sleep 30s
+
+        # now wait for this to become responsive to connections for 30 seconds
+        wget http://127.0.0.1:8000/ --retry-connrefused --tries 30 --waitretry=1
+
+        killall --wait uvicorn
+        killall --wait python3
