@@ -5,10 +5,18 @@ inputs:
     description: "branch/commit of database_service to test"
     required: false
     default: 'main'
+  database_service_registry:
+    description: "Repository of database_service to test"
+    required: false
+    default: 'TheDataStation/database_service'
   user_register_commit:
     description: "branch/commit of user_register to test"
     required: false
     default: 'main'
+  user_register_repository:
+    description: "repository of user_register to test"
+    required: false
+    default: 'TheDataStation/user_register'
 runs:
   using: composite
   steps:
@@ -16,12 +24,12 @@ runs:
       shell: bash
     - uses: actions/checkout@v2
       with:
-        repository: TheDataStation/user_register
+        repository: ${{ inputs.user_register_repository }}
         ref: ${{ inputs.user_register_commit }}
         path: user_register
     - uses: actions/checkout@v2
       with:
-        repository: TheDataStation/database_service
+        repository: ${{ inputs.database_service_repository }}
         ref: ${{ inputs.database_service_commit }}
         path: database_service
     - name: Set up Python 3.8
