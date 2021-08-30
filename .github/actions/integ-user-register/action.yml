@@ -16,7 +16,7 @@ runs:
       shell: bash
     - uses: actions/checkout@v2
       with:
-        repository: benclifford/user_register
+        repository: TheDataStation/user_register
         ref: ${{ inputs.user_register_commit }}
         path: user_register
     - uses: actions/checkout@v2
