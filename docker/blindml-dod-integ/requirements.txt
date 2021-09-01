@@ -1,2 +1,8 @@
 /blindml
 /aurum-datadiscovery
+sparqlwrapper==1.8.5
+seaborn==0.11.2
+idna==3.2
+charset_normalizer==2.0.4
+certifi==2021.5.30
+tensorflow==2.6.0
