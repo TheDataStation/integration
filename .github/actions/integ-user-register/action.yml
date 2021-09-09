@@ -5,7 +5,7 @@ inputs:
     description: "branch/commit of database_service to test"
     required: false
     default: 'main'
-  database_service_registry:
+  database_service_repository:
     description: "Repository of database_service to test"
     required: false
     default: 'TheDataStation/database_service'
