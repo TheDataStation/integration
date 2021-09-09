@@ -1,0 +1,45 @@
+name: 'Integrate user register and its backend'
+description: "install and basic test of user register with backend"
+inputs:
+  integration_commit:
+    description: "branch/commit of integration repo to test"
+    required: false
+    default: 'main'
+  integration_repository:
+    description: "Repository of integration repo to test"
+    required: false
+    default: 'TheDataStation/integration'
+  # user_register_commit:
+  #  description: "branch/commit of user_register to test"
+  #  required: false
+  #  default: 'main'
+  # user_register_repository:
+  #  description: "repository of user_register to test"
+  #  required: false
+  #  default: 'TheDataStation/user_register'
+runs:
+  using: composite
+  steps:
+    - run: echo former aurum-repo components integration test
+      shell: bash
+    - uses: actions/checkout@v2
+      with:
+        repository: ${{ inputs.integration_repository }}
+        ref: ${{ inputs.integration_commit }}
+        path: integration
+    # - uses: actions/checkout@v2
+    #  with:
+    #    repository: ${{ inputs.user_register_repository }}
+    #    ref: ${{ inputs.user_register_commit }}
+    #    path: user_register
+    #- uses: actions/checkout@v2
+    #  with:
+    #    repository: ${{ inputs.database_service_repository }}
+    #    ref: ${{ inputs.database_service_commit }}
+    #    path: database_service
+    - name: docker compose build
+      shell: bash
+      run: |
+        docker-compose -f integration/docker-compose.aurum.yaml build
+        echo done
+
