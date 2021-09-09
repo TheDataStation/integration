@@ -90,7 +90,7 @@ services:
       - elasticsearch
     image: aurum/notebook
     build:
-      context: .
+      context: ../aurum-dod-staging
       dockerfile: docker/Dockerfile-jupyter-notebook
     volumes:
       - ./data/models:/data/models
