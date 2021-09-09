@@ -1,6 +1,7 @@
 name: 'Integrate user register and its backend'
 description: "install and basic test of user register with backend"
 inputs:
+
   integration_commit:
     description: "branch/commit of integration repo to test"
     required: false
@@ -9,6 +10,16 @@ inputs:
     description: "Repository of integration repo to test"
     required: false
     default: 'TheDataStation/integration'
+
+  ddprofiler_commit:
+    description: "branch/commit of ddprofiler repo to test"
+    required: false
+    default: 'main'
+  ddprofiler_repository:
+    description: "Repository of ddprofiler repo to test"
+    required: false
+    default: 'TheDataStation/ddprofiler'
+
   # user_register_commit:
   #  description: "branch/commit of user_register to test"
   #  required: false
@@ -27,6 +38,11 @@ runs:
         repository: ${{ inputs.integration_repository }}
         ref: ${{ inputs.integration_commit }}
         path: integration
+    - uses: actions/checkout@v2
+      with:
+        repository: ${{ inputs.ddprofiler_repository }}
+        ref: ${{ inputs.ddprofiler_commit }}
+        path: ddprofiler
     # - uses: actions/checkout@v2
     #  with:
     #    repository: ${{ inputs.user_register_repository }}
