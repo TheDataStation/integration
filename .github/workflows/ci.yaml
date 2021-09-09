@@ -13,3 +13,11 @@ jobs:
       with:
         context: docker/
         push: false
+
+  integration-test:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/integ-user-register@master
+
