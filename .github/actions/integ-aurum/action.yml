@@ -30,6 +30,16 @@ inputs:
     required: false
     default: 'TheDataStation/ddprofiler'
 
+  aurum_commit:
+    description: "branch/commit of aurum repo to test"
+    required: false
+    default: 'main'
+  aurum_repository:
+    description: "Repository of aurum repo to test"
+    required: false
+    default: 'TheDataStation/aurum-dod-staging'
+
+
   # user_register_commit:
   #  description: "branch/commit of user_register to test"
   #  required: false
@@ -58,6 +68,11 @@ runs:
         repository: ${{ inputs.nbc_repository }}
         ref: ${{ inputs.nbc_commit }}
         path: nbc
+    - uses: actions/checkout@v2
+      with:
+        repository: ${{ inputs.aurum_repository }}
+        ref: ${{ inputs.aurum_commit }}
+        path: aurum-dod-staging
     # - uses: actions/checkout@v2
     #  with:
     #    repository: ${{ inputs.user_register_repository }}
