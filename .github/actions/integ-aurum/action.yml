@@ -4,7 +4,7 @@ inputs:
   integration_commit:
     description: "branch/commit of integration repo to test"
     required: false
-    default: 'main'
+    default: 'master'
   integration_repository:
     description: "Repository of integration repo to test"
     required: false
