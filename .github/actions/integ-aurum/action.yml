@@ -33,7 +33,7 @@ inputs:
   aurum_commit:
     description: "branch/commit of aurum repo to test"
     required: false
-    default: 'master'
+    default: 'benc-blindml-integration'
   aurum_repository:
     description: "Repository of aurum repo to test"
     required: false
