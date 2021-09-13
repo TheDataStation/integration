@@ -1,0 +1,27 @@
+version: '3'
+
+networks:
+  aurum_net:
+    driver: bridge
+
+services:
+  user_register:
+    depends_on:
+      - database_service
+    networks:
+      aurum_net:
+        aliases:
+          - user_register
+    build:
+      context: ../user_register
+      dockerfile: Dockerfile
+
+
+  database_service:
+    networks:
+      aurum_net:
+        aliases:
+          - database_service
+    build:
+      context: ../database_service
+      dockerfile: Dockerfile
