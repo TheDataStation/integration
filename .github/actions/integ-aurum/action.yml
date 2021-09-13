@@ -40,14 +40,6 @@ inputs:
     default: 'TheDataStation/aurum-dod-staging'
 
 
-  # user_register_commit:
-  #  description: "branch/commit of user_register to test"
-  #  required: false
-  #  default: 'main'
-  # user_register_repository:
-  #  description: "repository of user_register to test"
-  #  required: false
-  #  default: 'TheDataStation/user_register'
 runs:
   using: composite
   steps:
