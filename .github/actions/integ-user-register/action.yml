@@ -49,6 +49,8 @@ runs:
       shell: bash
       run: |
         docker-compose -f integration/docker-compose.user.yaml build
+        docker-compose -f integration/docker-compose.user.yaml up --detach
+        docker-compose -f integration/docker-compose.user.yaml down
         echo done
 
 
