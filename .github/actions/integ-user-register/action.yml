@@ -50,7 +50,7 @@ runs:
       run: |
         docker-compose -f integration/docker-compose.user.yaml build
         docker-compose -f integration/docker-compose.user.yaml up --detach
-        docker-compose -f integration/docker-compose.user.yaml run --name integ-user_reg-db -v $(pwd)/integrations:/integrations user_register /integrations/test-user_reg-db
+        docker-compose -f integration/docker-compose.user.yaml run --name integ-user_reg-db -v $(pwd)/integration/integrations:/integrations user_register /integrations/test-user_reg-db
 
         docker-compose -f integration/docker-compose.user.yaml down
         echo done
