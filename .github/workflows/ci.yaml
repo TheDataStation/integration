@@ -9,6 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: ./.github/actions/integ-user-register
+        with:
+          integration_repository: ${{ github.repository }}
+          integration_commit: ${{ github.ref }}
+
 
   integration-test-aurum:
     runs-on: ubuntu-20.04
@@ -16,3 +20,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: ./.github/actions/integ-aurum
+        with:
+          integration_repository: ${{ github.repository }}
+          integration_commit: ${{ github.ref }}

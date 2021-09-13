@@ -17,11 +17,24 @@ inputs:
     description: "repository of user_register to test"
     required: false
     default: 'TheDataStation/user_register'
+  integration_commit:
+    description: "branch/commit of integration repo to test"
+    required: false
+    default: 'master'
+  integration_repository:
+    description: "Repository of integration repo to test"
+    required: false
+    default: 'TheDataStation/integration'
 runs:
   using: composite
   steps:
     - run: echo user register and backend database_service integration test
       shell: bash
+    - uses: actions/checkout@v2
+      with:
+        repository: ${{ inputs.integration_repository }}
+        ref: ${{ inputs.integration_commit }}
+        path: integration
     - uses: actions/checkout@v2
       with:
         repository: ${{ inputs.user_register_repository }}
@@ -32,22 +45,10 @@ runs:
         repository: ${{ inputs.database_service_repository }}
         ref: ${{ inputs.database_service_commit }}
         path: database_service
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.8
-    - name: install requirements.txt from both components together
+    - name: docker compose build
       shell: bash
       run: |
-        pip install -r user_register/requirements.txt -r database_service/requirements.txt
-        cd database_service && python3 DatabaseServer.py &
-        cd user_register && uvicorn main:app --reload &
-
-        # now wait for this to become responsive to connections for 30 seconds
-        wget http://127.0.0.1:8000/ --retry-connrefused --tries 30 --waitretry=1
-
-        # Fall off the end without killing the processes explicitly.
-        # uvicorn does not shut down in response to signals:
-        # https://stackoverflow.com/questions/60424390/is-there-a-way-to-kill-uvicorn-cleanly
-
+        docker-compose -f integration/docker-compose.user.yaml build
         echo done
+
+
