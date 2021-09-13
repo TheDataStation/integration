@@ -1,6 +1,10 @@
 name: CI_datastation_integration
 
-on: push
+on: 
+  push:
+  schedule:
+    # run once per week to flush out breakages not caught elsewhere
+    - cron: '15 17 * * 1'
 
 jobs:
   integration-test-user-register:
