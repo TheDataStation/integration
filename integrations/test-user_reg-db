@@ -1,0 +1,6 @@
+#!/bin/bash -ex
+
+# wait until the user register service is up
+wget http://user_register:8000/ --retry-connrefused --tries 30 --waitretry=1
+
+# then ... TODO ... run some tests here
