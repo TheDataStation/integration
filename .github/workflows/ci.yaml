@@ -3,17 +3,6 @@ name: CI_datastation_integration
 on: push
 
 jobs:
-  basic-test:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-
-    - name: docker build
-      uses: docker/build-push-action@master
-      with:
-        context: docker/
-        push: false
-
   integration-test-user-register:
     runs-on: ubuntu-20.04
     timeout-minutes: 20
