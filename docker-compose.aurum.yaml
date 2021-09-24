@@ -49,6 +49,8 @@ services:
           - elasticsearch
 
   profiler:
+    profiles:
+      - no_auto
     depends_on:
       - elasticsearch
     image: aurum/ddprofiler:0.1
@@ -71,6 +73,8 @@ services:
   # profiler is also a one-off command so probably shouldn't run as a service
   # but be run as one-off like the nbc example.
   nbc:
+    profiles:
+      - no_auto
     depends_on:
       - elasticsearch
     image: aurum/networkbuildercoordinator:0.1
