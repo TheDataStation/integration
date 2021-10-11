@@ -102,6 +102,11 @@ runs:
         chmod a+rwx data/elasticsearch
         chmod +t data/elasticsearch
 
+        cp -v ./adventureWork.yaml data/
+        pushd data
+        unzip ../docker/adventureWork.zip
+        popd
+
         echo Launching integration script
         ./integration-test-aurum.sh
 
