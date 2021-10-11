@@ -22,13 +22,13 @@ inputs:
 
 
   nbc_commit:
-    description: "branch/commit of ddprofiler repo to test"
+    description: "branch/commit of nbc repo to test"
     required: false
     default: 'main'
   nbc_repository:
-    description: "Repository of ddprofiler repo to test"
+    description: "Repository of nbc repo to test"
     required: false
-    default: 'TheDataStation/ddprofiler'
+    default: 'TheDataStation/nbc'
 
   aurum_commit:
     description: "branch/commit of aurum repo to test"
