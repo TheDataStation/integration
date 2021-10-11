@@ -12,6 +12,8 @@ services:
       aurum_net:
         aliases:
           - user_register
+    ports:
+      - 8000:8000
     build:
       context: ../user_register
       dockerfile: Dockerfile
