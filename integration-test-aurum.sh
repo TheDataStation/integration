@@ -26,7 +26,10 @@ sleep 60s
 # Second run nbc
 
 docker-compose -f ./docker-compose.aurum.yaml run profiler
+echo Exit code from profiler: $?
+
 docker-compose -f ./docker-compose.aurum.yaml run nbc
+echo Exit code from nbc: $?
 
 
 # TODO now run the other things from demo
