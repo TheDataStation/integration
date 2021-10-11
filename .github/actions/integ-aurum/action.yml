@@ -93,8 +93,7 @@ runs:
     - name: docker compose build and bring containers up
       shell: bash
       run: |
-        echo Building
-        docker-compose -f integration/docker-compose.aurum.yaml build
+        cd integration/
 
         # prepare the mount points - if docker creates them itself, then
         # they end up with the wrong permissions
