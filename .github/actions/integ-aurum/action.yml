@@ -39,6 +39,16 @@ inputs:
     required: false
     default: 'TheDataStation/aurum-dod-staging'
 
+  aurum_common_commit:
+    description: "branch/commit of aurum-common repo to test"
+    required: false
+    default: 'main'
+  aurum_common_repository:
+    description: "Repository of aurum-common repo to test"
+    required: false
+    default: 'TheDataStation/aurum-common'
+
+
 
 runs:
   using: composite
@@ -65,6 +75,11 @@ runs:
         repository: ${{ inputs.aurum_repository }}
         ref: ${{ inputs.aurum_commit }}
         path: aurum-dod-staging
+    - uses: actions/checkout@v2
+      with:
+        repository: ${{ inputs.aurum_common_repository }}
+        ref: ${{ inputs.aurum_common_commit }}
+        path: aurum-common
     # - uses: actions/checkout@v2
     #  with:
     #    repository: ${{ inputs.user_register_repository }}
