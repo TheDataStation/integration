@@ -1,7 +1,5 @@
 #!/bin/bash -ex
 
-sudo -u elastic -i elasticsearch &
-
 cd /ddprofiler
 
 bash ./run.sh --source=/adventureWork.yaml

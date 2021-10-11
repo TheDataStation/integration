@@ -7,25 +7,6 @@ RUN apt-get install -y openjdk-11-jdk
 
 WORKDIR /
 
-# Install elasticsearch
-# quickstart says v6  or above.
-RUN curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.0.0.tar.gz
-
-RUN tar xzvf elasticsearch*.tar.gz
-
-# the elasticsearch tarball is pretty weird permissions for
-# installing as root. this hacks away at the defaults
-
-RUN adduser --system elastic
-# other users cannot access certain parts of this tree by default
-# so fix that
-# RUN find /elasticsearch-7.11.1/ -type f -exec chmod a+r {} \;
-# RUN find /elasticsearch-7.11.1/ -type d -exec chmod a+rx {} \;
-# Default elasticsearch wants to write into the logs/ subdirectory
-# RUN chmod a+rw /elasticsearch-7.11.1/logs/
-
-RUN chown -R elastic /elasticsearch-*/
-
 # quickstart guide set of prereqs
 RUN apt-get update && apt-get install -y pkg-config libpng-dev libfreetype6-dev libblas-dev liblapack-dev lib32ncurses5-dev
 
@@ -40,12 +21,6 @@ RUN chmod a+x /cue.shell
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
-
-# set the environment for elasticsearch to start properly
-
-RUN chsh elastic --shell /bin/bash
-
-RUN echo 'export PATH=/elasticsearch-6.0.0/bin:$PATH' >> /etc/profile.d/datastation.sh
 
 # The python build:
 
@@ -69,15 +44,9 @@ RUN pip3 install -r blindml-dod-integ/requirements.txt
 #RUN ./quick-test.sh
 
 
-# The java build:
-# elasticsearch installed by cue/benc/datastation-dod
-# but the path to it needs setting
-ENV PATH=/elasticsearch-6.0.0/bin:$PATH
-
-
 ADD blindml-dod-integ /blindml-dod-integ
 
-RUN git clone https://github.com/TheDataStation/ddprofiler /ddprofiler --branch benc-integration && cd /ddprofiler && git checkout 7fb71c3d985915b15b75f5c1d6acd07de42be7ec
+RUN git clone https://github.com/TheDataStation/ddprofiler /ddprofiler --branch main && cd /ddprofiler && git checkout 067e6e3d5b88e39d739a5c646cb9de6be1ed37b0
 
 WORKDIR /ddprofiler
 RUN bash build.sh

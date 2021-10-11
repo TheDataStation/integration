@@ -75,9 +75,20 @@ runs:
     #    repository: ${{ inputs.database_service_repository }}
     #    ref: ${{ inputs.database_service_commit }}
     #    path: database_service
-    - name: docker compose build
+    - name: docker compose build and bring containers up
       shell: bash
       run: |
+        echo Building
         docker-compose -f integration/docker-compose.aurum.yaml build
+
+        # prepare the mount points - if docker creates them itself, then
+        # they end up with the wrong permissions
+        mkdir data
+        mkdir data/elasticsearch
+        chmod a+rwx data/elasticsearch
+        chmod +t data/elasticsearch
+
+        echo Bringing containers up
+        docker-compose -f ./docker-compose.aurum.yaml up --abort-on-container-exit
         echo done
 

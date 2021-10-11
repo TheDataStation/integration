@@ -8,6 +8,8 @@ docker build --tag=aurum/aurum-common .
 popd
 
 docker-compose -f ./docker-compose.aurum.yaml build
+docker-compose -f ./docker-compose.aurum.yaml build profiler
+docker-compose -f ./docker-compose.aurum.yaml build nbc
 
 docker-compose -f ./docker-compose.aurum.yaml up --abort-on-container-exit &
 services_pid=$!
@@ -24,6 +26,7 @@ sleep 60s
 # Second run nbc
 
 docker-compose -f ./docker-compose.aurum.yaml run profiler
+docker-compose -f ./docker-compose.aurum.yaml run nbc
 
 
 # TODO now run the other things from demo
