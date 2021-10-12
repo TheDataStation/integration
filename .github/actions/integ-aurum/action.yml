@@ -14,7 +14,7 @@ inputs:
   ddprofiler_commit:
     description: "branch/commit of ddprofiler repo to test"
     required: false
-    default: 'main'
+    default: 'benc-integration2'
   ddprofiler_repository:
     description: "Repository of ddprofiler repo to test"
     required: false
